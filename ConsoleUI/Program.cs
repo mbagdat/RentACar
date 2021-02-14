@@ -10,9 +10,9 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarTest();
+            //CarTest();
             //BrandTest();
-            //ColorTest();
+            ColorTest();
             Console.WriteLine("----------------------------------------------");
 
         }
@@ -20,10 +20,19 @@ namespace ConsoleUI
         private static void BrandTest()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDao());
-            foreach (var item in brandManager.GetAll())
+            var result = brandManager.GetAll();
+            if (result.Success)
             {
-                Console.WriteLine(item.BrandName);
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine(item.BrandName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
         }
 
         private static void CarTest()
@@ -60,15 +69,24 @@ namespace ConsoleUI
         private static void ColorTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDao());
-            colorManager.Add(new Color()
+            var result = colorManager.GetAll();
+            if (result.Success)
             {
-                ColorId = 7,
-                ColorName = "Turuncu"
-            });
-            foreach (var item in colorManager.GetAll())
-            {
-                Console.WriteLine(item.ColorName);
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine(item.ColorName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+            //colorManager.Add(new Color()
+            //{
+            //    ColorId = 7,
+            //    ColorName = "Turuncu"
+            //});
+
         }
     }
 }
