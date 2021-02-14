@@ -16,6 +16,16 @@ namespace Business.Concrete
             _brandDao = brandDao;
         }
 
+        public void Add(Brand brand)
+        {
+            _brandDao.Add(brand);
+        }
+
+        public void Delete(Brand brand)
+        {
+            _brandDao.Delete(brand);
+        }
+
         public List<Brand> GetAll()
         {
             return _brandDao.GetAll();
@@ -24,6 +34,11 @@ namespace Business.Concrete
         public Brand GetById(int brandId)
         {
             return _brandDao.Get(b => b.BrandId == brandId);
+        }
+
+        public void Update(Brand brand)
+        {
+            _brandDao.Update(brand);
         }
     }
 }

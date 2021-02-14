@@ -24,7 +24,8 @@ namespace DataAccess.Concrete.EntityFramework
                              {
                                  CarId = car.CarId,
                                  BrandName = brand.BrandName,
-                                 ColorName = color.ColorName
+                                 ColorName = color.ColorName,
+                                 ModelYear = car.ModelYear
                              };
                 return result.ToList();
             }
