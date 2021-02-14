@@ -25,5 +25,20 @@ namespace Business.Constans
         internal static string ColorListed = "Renkler listelendi";
         internal static string ColorDeleted = "Renk slindi !";
         internal static string ColorUpdated = "Renk güncellendi";
+
+        public static string UserAdded = "Kullanıcı eklendi";
+        public static string UserInvalid = "Kullanıcı adı geçersiz";
+        internal static string UserListed = "Kullanıcılar listelendi";
+        internal static string UserDeleted = "Kullanıcı slindi !";
+        internal static string UserUpdated = "Kullanıcı güncellendi";
+
+        public static string CustomerAdded = "Müşteri eklendi";
+        public static string CustomerInvalid = "Müşteri adı geçersiz";
+        internal static string CustomerListed = "Müşteriler listelendi";
+        internal static string CustomerDeleted = "Müşteri slindi !";
+        internal static string CustomerUpdated = "Müşteri güncellendi";
+
+        public static string RentalCanNotAdded = "Araç kiralanamaz !";
+        internal static string RentalRentable = "Araç kiralanabilir";
     }
 }
