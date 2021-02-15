@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    class RentalManager : IRentalService
+    public class RentalManager : IRentalService
     {
         IRentalDao _rentalDao;
 
