@@ -31,7 +31,12 @@ namespace Business.Concrete
 
         public IDataResult<List<Rental>> GetAll()
         {
-            throw new NotImplementedException();
+
+            if (DateTime.Now.Hour == 22)
+            {
+                return new ErrorDataResult<List<Rental>>(Messages.Maintenance);
+            }
+            return new SuccessDataResult<List<Rental>>(_rentalDao.GetAll(), Messages.CustomerListed);
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetailsDto(int carId)
