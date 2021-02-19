@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -18,12 +20,14 @@ namespace Business.Concrete
             _brandDao = brandDao;
         }
 
+
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
-            if (brand.BrandName.Length < 3)
-            {
-                return new ErrorResult(Messages.BrandAdded);
-            }
+            //if (brand.BrandName.Length < 3)
+            //{
+            //    return new ErrorResult(Messages.BrandAdded);
+            //}
             _brandDao.Add(brand);
             return new SuccessResult(Messages.BrandAdded);
         }
