@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,16 +23,9 @@ namespace Business.Concrete
             _carDao = carDao;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            var context = new ValidationContext<Car>(car);
-            CarValidator productValidator = new CarValidator();
-            var result = productValidator.Validate(context);
-            if (!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
-
 
             _carDao.Add(car);
             return new SuccessResult(Messages.CarAdded);
