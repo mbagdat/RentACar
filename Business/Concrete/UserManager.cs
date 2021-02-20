@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -18,12 +20,9 @@ namespace Business.Concrete
             _userDao = userDao;
         }
 
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
-            if (user.FirstName.Length < 2 && user.LastName.Length < 2 && user.Email.Length < 0 && user.Password.Length < 4)
-            {
-                return new ErrorResult(Messages.UserInvalid);
-            }
             _userDao.Add(user);
             return new SuccessResult(Messages.UserAdded);
         }

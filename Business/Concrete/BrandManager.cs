@@ -24,10 +24,6 @@ namespace Business.Concrete
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
-            //if (brand.BrandName.Length < 3)
-            //{
-            //    return new ErrorResult(Messages.BrandAdded);
-            //}
             _brandDao.Add(brand);
             return new SuccessResult(Messages.BrandAdded);
         }

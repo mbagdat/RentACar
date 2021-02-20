@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -18,12 +20,11 @@ namespace Business.Concrete
             _customerDao = customerDao;
         }
 
+
+        [ValidationAspect(typeof(CustomerValidator))]
         public IResult Add(Customer customer)
         {
-            if (customer.CompanyName.Length < 4)
-            {
-                return new ErrorResult(Messages.CustomerInvalid);
-            }
+
             _customerDao.Add(customer);
             return new SuccessResult(Messages.CustomerAdded);
         }
